@@ -56,11 +56,11 @@ border-radius: 12px;
 min-height: 60vh;
 padding-bottom: 30px;
   h1 {
-      display: flex;
-      font-size: 30px;
-      border-bottom: 1px solid black;
-      width: 90%;
-      margin: 20px auto;
+    display: flex;
+    font-size: 30px;
+    border-bottom: 1px solid black;
+    width: 90%;
+    margin: 20px auto;
   }
 `;
 
