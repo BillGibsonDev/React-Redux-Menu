@@ -10,7 +10,7 @@ const reducer = (state = initialState, action) => {
     case GET_CART:
       return {
         ...state,
-        cart: action.payload, 
+        cart: [...state.cart], 
       };
 
     case ADD_TO_CART:
@@ -25,12 +25,12 @@ const reducer = (state = initialState, action) => {
           ...state.cart.slice(0, action.payload.index),
           ...state.cart.slice(action.payload.index + 1)
         ],
-    }
+      }
 
     case ADJUST_QTY:
       return {
         cart: state.cart.map((product) =>
-          product._id === action.payload.id
+          product.product._id === action.payload.id
             ? { ...product, qty: action.payload.qty }
             : product
         ),

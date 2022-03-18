@@ -28,7 +28,7 @@ const StyledCart = styled.div`
       position: relative;
       display: block;
       width: 40px;
-      height: 40px;
+      height: 35px;
       h6 {
           font-size: 20px;
           left: 45%;

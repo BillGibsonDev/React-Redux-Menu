@@ -21,7 +21,7 @@ export default function CartProduct({product, title, price, image, id, qty, inde
     const [ value, setValue ] = useState(qty)
 
     function handleQty(){
-        dispatch(adjustQty(id, value))
+       dispatch(adjustQty(id, value))
     }
    
   return (
@@ -34,7 +34,7 @@ export default function CartProduct({product, title, price, image, id, qty, inde
             </div>
             <div className="quanity-container">
                 <input type="number" min={1} max={10} defaultValue={qty} onChange={(e) => { setValue(e.target.value); }} />
-                <button id="update" onClick={() => { handleQty(value) }}>Update</button>
+                <button id="update" onClick={() => { handleQty(id, value) }}>Update</button>
             </div>
             <button id="remove" onClick={() => { handleCart(index) }}>Remove</button>
         </div> 

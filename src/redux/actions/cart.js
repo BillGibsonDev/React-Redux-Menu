@@ -21,7 +21,7 @@ export const removeFromCart = ( index ) => {
   };
 }
 
-export const adjustQty = ( id, qty ) => {
+export const adjustQty = (id, qty) => {
   return {
     type: ADJUST_QTY,
     payload: {

@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 
 // component
 import CartProduct from '../components/CartProduct';
+import TotalCounter from "../components/TotalCounter";
 
 const CartPage = ({cart}) => {
 
@@ -48,7 +49,7 @@ const CartPage = ({cart}) => {
               }
             </div>
             <div className="total-container">
-              
+              <TotalCounter />
             </div>
           </>
         )
