@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 // styled
 import styled from "styled-components";
 
@@ -12,17 +14,26 @@ export default function Product({product, title, price, image, id}) {
 
     const dispatch = useDispatch();
 
+    const [value, setValue ] = useState(1)
+
     function handleCart(){
-        dispatch(addToCart(product))
+        let num = parseInt(value)
+        dispatch(addToCart(product, num))
+        setTimeout(function() { alert(`${product.title} added`); }, 100);
     }
    
   return (
     <StyledProduct>
         <Link to={`/order/${id}`}><img src={image} alt="" /></Link>
         <div className="text-wrapper">
-            <Link to={`/order/${id}`}>{title}</Link>
-            <h3>${price}</h3>
-            <button onClick={()=>{handleCart(product)}}>Add to Cart</button>
+            <div className="text-container">
+                <Link to={`/order/${id}`}>{title}</Link>
+                <h3>${price}</h3>
+            </div>
+            <div className="button-container">
+                <input type="text" min={1} defaultValue={value} onChange={(e) => { setValue(e.target.value); }} />
+                <button onClick={()=>{handleCart(product, value)}}>Order</button>
+            </div>
         </div>
     </StyledProduct>
   )
@@ -30,40 +41,64 @@ export default function Product({product, title, price, image, id}) {
 
 const StyledProduct = styled.div`
 width: 100%;
-padding: 10px 0;
+border: 1px #ffffff71 solid;
+background: #ffffff6f;
+transition: 0.2s;
+    &:hover {
+        background: #9b9b9b;
+        transform: scale(1.02);
+    }
     img {
         width: 100%;
         height: 200px;
     }
     .text-wrapper {
+        width: 98%;
+        margin: 0 auto;
+        .text-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
             a {
-            color: #000000;
-            font-size: 20px;
-            &:hover {
-                text-decoration: underline;
-                text-underline-position: under;
+                color: #000000;
+                font-size: 16px;
+                &:hover {
+                    text-decoration: underline;
+                    text-underline-position: under;
+                }
+            }
+            h3 {
+                color: #242424;
+                font-size: 12px;
             }
         }
-        h3 {
-            margin: 10px 0;
-            font-size: 16px;
-        }
-        button {
-            cursor: pointer;
-            background: red;
-            width: 150px;
-            height: 30px;
+        .button-container {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            color: white;
-            border-radius: 6px;
-            transition: 0.2s;
-            border: red 1px solid;
-            &:hover {
-                background: #000000;
-                text-decoration: none;
+            width: 100%;
+            justify-content: space-between;
+            input {
+                height: 30px;
+                width: 40px;
+                text-align: center;
+            }
+            button {
+                cursor: pointer;
+                background: red;
+                width: 120px;
+                height: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 16px;
+                color: white;
+                border-radius: 6px;
+                transition: 0.2s;
+                border: red 1px solid;
+                &:hover {
+                    background: #000000;
+                    text-decoration: none;
+                }
             }
         }
     }

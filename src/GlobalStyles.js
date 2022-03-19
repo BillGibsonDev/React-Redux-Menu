@@ -20,6 +20,9 @@ html {
     @media (max-width: 1220px){
         width: 90%
     } 
+    @media (max-width: 700px){
+        width: 95%
+    } 
 }
 button, label, input, textarea{
     font-family: 'Merriweather Sans', sans-serif;

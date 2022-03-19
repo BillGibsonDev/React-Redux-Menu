@@ -13,11 +13,10 @@ import { connect } from "react-redux";
 const Nav = ({cart}) => {
   return (
     <StyledNav>
-        <h1>Via Napoli</h1>
+        <Link to="/" id="logo">Via Napoli</Link>
         <div className="nav-links">
-            <Link to="/">Home</Link>
-            <Link to="/contact">Contact</Link>
-            <Link to="/order" id="order-button">Order</Link>
+            <Link id="home-link" to="/">Home</Link>
+            <Link to="/order" id="order-button">Order Online</Link>
             {
                 cart.length === 0 ? (
                     <></>
@@ -36,22 +35,40 @@ const StyledNav = styled.nav`
     align-items: center;
     width: 100%;
     justify-content: space-between;
-    h1 {
+    #logo {
         color: red;
         font-size: 30px;
         font-family: 'Lobster', cursive;
+        @media(max-width: 650px){
+           font-size: 24px;
+        }
     }
     .nav-links {
         display: flex;
         justify-content: space-between;
-        max-width: 400px;
+        align-items: center;
+        max-width: 300px;
         width: 100%;
+        @media(max-width: 650px){
+            max-width: 220px;
+        }
+        @media(max-width: 375px){
+            max-width: 150px;
+        }
         a {
-            font-size: 20px;
+            font-size: 16px;
             color: white;
             &:hover {
                text-decoration: underline;
                text-underline-position: under;
+            }
+            @media(max-width: 650px){
+                font-size: 14px;
+            }
+        }
+        #home-link {
+            @media(max-width: 375px){
+                display: none;
             }
         }
         #order-button {
@@ -61,7 +78,7 @@ const StyledNav = styled.nav`
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 24px;
+            font-size: 16px;
             color: white;
             border-radius: 6px;
             transition: 0.2s;
@@ -69,6 +86,10 @@ const StyledNav = styled.nav`
             &:hover {
                 background: #000000;
                 text-decoration: none;
+            }
+            @media(max-width: 650px){
+                width: 100px;
+                font-size: 14px;
             }
         }
     }

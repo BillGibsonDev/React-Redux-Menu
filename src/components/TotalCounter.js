@@ -9,31 +9,37 @@ import { connect } from 'react-redux';
 
 function TotalCounter({cart}) {
 
-    const [ total, setTotal ] = useState(0)
+  const [ total, setTotal ] = useState(0);
+  const [ tax, setTax ] = useState(0);
 
-    useEffect(() => {
-      function handleTotal(){
-        let value = 0;
-        for (let i = 0; i < cart.length; i++) {
-            value += cart[i].product.price * cart[i].qty;
-        }
-        console.log(value)
-        setTotal(value)
-        }
-        console.log(typeof(cart))
-      handleTotal();
-    }, [cart])
+  useEffect(() => {
+    function handleTotal(){
+      let value = 0;
+      for (let i = 0; i < cart.length; i++) {
+        value += cart[i].product.price * cart[i].qty;
+        value += value * .07;
+      }
+      setTax((value * .07).toFixed(2))
+      setTotal(value.toFixed(2));
+      }
+    handleTotal();
+  }, [cart])
     
-    console.log(cart[0].qty)
   return (    
     <StyledTotal>
-        <h2>{total}</h2>
+        <h2>Tax: <span>${tax}</span></h2>
+        <h2>Total: <span>${total}</span></h2>
     </StyledTotal>
   );
 }
 
 const StyledTotal = styled.div`
   display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+  align-items: flex-end;
+  border-top: 1px solid black;
   a {
       position: relative;
       display: block;

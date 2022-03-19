@@ -48,9 +48,7 @@ const CartPage = ({cart}) => {
                 })
               }
             </div>
-            <div className="total-container">
-              <TotalCounter />
-            </div>
+            <TotalCounter />
           </>
         )
       }
@@ -61,7 +59,7 @@ const CartPage = ({cart}) => {
 const StytledCart = styled.section`
 background: #bbbbbb;
 border-radius: 12px;
-min-height: 60vh;
+min-height: 40vh;
 padding-bottom: 30px;
   h1 {
     display: flex;

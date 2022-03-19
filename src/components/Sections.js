@@ -37,7 +37,10 @@ const StyledSection = styled.section`
     grid-row-gap: 16px;
     grid-column-gap: 16px;
     @media (max-width: 1000px){
-        grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 615px){
+      grid-template-columns: 1fr;
     }
 `;
 

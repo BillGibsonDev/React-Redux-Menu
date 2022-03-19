@@ -3,11 +3,12 @@ import { ADD_TO_CART, REMOVE_FROM_CART, GET_CART, ADJUST_QTY } from '../constant
 
 export const getCart = payload => ({ type: GET_CART, payload: [] })
 
-export const addToCart = ( product ) => {
+export const addToCart = ( product, qty ) => {
   return {
     type: ADD_TO_CART,
     payload: {
       product,
+      qty,
     },
   };
 }

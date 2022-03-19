@@ -5,7 +5,6 @@ import GlobalStyles from './GlobalStyles.js';
 
 // pages
 import LandingPage from './pages/LandingPage.js';
-import ContactPage from './pages/ContactPage.js';
 import OrderPage from './pages/OrderPage.js';
 import CartPage from './pages/CartPage.js';
 import ProductPage from './pages/ProductPage.js';
@@ -43,8 +42,6 @@ const App = () => {
       <Routes>
 
         <Route path='/' exact element={<LandingPage />} />
-
-        <Route path='/contact' element={<ContactPage />} />
 
         <Route path='/order' element={<OrderPage />} />
 
