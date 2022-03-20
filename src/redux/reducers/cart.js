@@ -14,9 +14,11 @@ const reducer = (state = initialState, action) => {
       };
 
     case ADD_TO_CART:
+      console.log(action.payload)
+      console.log(state.cart)
       return {
         ...state,
-        cart: [ ...state.cart, {...action.payload } ], 
+        cart: [ ...state.cart, { ...action.payload } ], 
       };
 
     case REMOVE_FROM_CART:

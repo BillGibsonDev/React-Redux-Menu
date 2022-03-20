@@ -16,8 +16,8 @@ import TotalCounter from "../components/TotalCounter";
 const CartPage = ({cart}) => {
 
   useEffect(() => {
-      window.scrollTo(0, 0);
-    }, []);
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <StytledCart>
@@ -37,6 +37,7 @@ const CartPage = ({cart}) => {
                     <CartProduct
                       key={index}
                       index={index}
+                      cart={cart}
                       product={product.product}
                       title={product.product.title}
                       price={product.product.price}

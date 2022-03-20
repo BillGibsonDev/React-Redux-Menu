@@ -22,6 +22,7 @@ export default function ProductPage() {
   function handleCart(){
       let num = parseInt(value)
       dispatch(addToCart(product, num))
+      window.alert(`${product.title} updated!`);
   }
 
   const [ product, setProduct ] = useState([]);
@@ -60,6 +61,7 @@ export default function ProductPage() {
 const StyledPage = styled.div`
 width: 100%;
 display: flex;
+margin-top: 20px;
   @media(max-width: 650px){
     flex-direction: column;
   }

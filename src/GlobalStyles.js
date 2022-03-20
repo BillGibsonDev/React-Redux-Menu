@@ -9,7 +9,7 @@ const GlobalStyles = createGlobalStyle`
 html {
     margin: auto;
     scroll-behavior: smooth;
-    width:60%;
+    width: 60%;
     background: #171e22;
     font-family: 'Merriweather Sans', sans-serif;
     letter-spacing: .5px;
@@ -17,7 +17,7 @@ html {
     @media (max-width: 1450px){
         font-size: 70%;
     }  
-    @media (max-width: 1220px){
+    @media (max-width: 1280px){
         width: 90%
     } 
     @media (max-width: 700px){

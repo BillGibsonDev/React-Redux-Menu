@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // styled
 import styled from "styled-components";
@@ -10,32 +10,43 @@ import { Link } from "react-router-dom";
 import { removeFromCart, adjustQty } from '../redux/actions/cart.js';
 import { useDispatch } from 'react-redux';
 
-export default function CartProduct({product, title, price, image, id, qty, index}) {
+export default function CartProduct({cart, title, price, image, id, qty, index}) {
 
     const dispatch = useDispatch();
 
-    function handleCart(){
-        dispatch(removeFromCart(index))
-    }
+    const [ value, setValue ] = useState(qty);
 
-    const [ value, setValue ] = useState(qty)
+    useEffect(() => {
+        function handleInput(cart){
+            let inputs = document.getElementsByClassName("input")
+            for (let i = 0; i < inputs.length; i++){
+                inputs[i].defaultValue = cart[i].qty;
+            }
+        }
+        handleInput(cart);
+    }, [qty, cart])
+
+    function handleCart(){
+        dispatch(removeFromCart(index));
+    }
 
     function handleQty(){
-        let num = parseInt(value)
-       dispatch(adjustQty(id, num))
+        let num = parseInt(value);
+        setValue(qty)
+        dispatch(adjustQty(id, num));
     }
-   
+
   return (
     <StyledProduct>
         <Link to={`/order/${id}`}><img src={image} alt="" /></Link>
         <div className="text-wrapper">
             <div className="text-container">
-                <Link to={`/order/${id}`}>{title}</Link>
+                <Link to={`/order/${id}`}>{title}<span> x {qty}</span></Link>
                 <h3>${price * qty}</h3>
             </div>
             <div className="button-container">
                 <div className="quanity-container">
-                    <input type="text" defaultValue={qty} onChange={(e) => { setValue(e.target.value); }} />
+                    <input type="text" className="input" onChange={(e) => { setValue(e.target.value); }} />
                     <button id="update" onClick={() => { handleQty(id, value) }}>Update</button>
                 </div>
                 <button id="remove" onClick={() => { handleCart(index) }}>Remove</button>
@@ -88,6 +99,9 @@ display: flex;
                 &:hover {
                     text-decoration: underline;
                     text-underline-position: under;
+                }
+                span {
+                    color: #3b3b3b;
                 }
             }
             h3 {

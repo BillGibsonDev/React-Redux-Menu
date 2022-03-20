@@ -19,7 +19,7 @@ export default function Product({product, title, price, image, id}) {
     function handleCart(){
         let num = parseInt(value)
         dispatch(addToCart(product, num))
-        setTimeout(function() { alert(`${product.title} added`); }, 100);
+        window.alert(`${product.title} added`);
     }
    
   return (
