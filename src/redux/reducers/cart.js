@@ -14,8 +14,6 @@ const reducer = (state = initialState, action) => {
       };
 
     case ADD_TO_CART:
-      console.log(action.payload)
-      console.log(state.cart)
       return {
         ...state,
         cart: [ ...state.cart, { ...action.payload } ], 
@@ -27,7 +25,7 @@ const reducer = (state = initialState, action) => {
           ...state.cart.slice(0, action.payload.index),
           ...state.cart.slice(action.payload.index + 1)
         ],
-      }
+      };
 
     case ADJUST_QTY:
       return {

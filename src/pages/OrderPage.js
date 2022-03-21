@@ -5,6 +5,7 @@ import styled from "styled-components"
 
 // components
 import Section from "../components/Sections";
+import Loader from "../components/Loader";
 
 // redux
 import { useDispatch } from 'react-redux';
@@ -26,7 +27,7 @@ const OrderPage = ({products}) => {
     <StyledPage>
       {
         products[18] === undefined ? (
-          <></>
+          <Loader />
         ): (
           <>
             <h1>Appetizers</h1>
