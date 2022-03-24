@@ -15,6 +15,7 @@ export default function CartProduct({cart, title, price, image, id, qty, index})
     const dispatch = useDispatch();
 
     const [ value, setValue ] = useState(qty);
+    const [ total, setTotal ] = useState();
 
     useEffect(() => {
         function handleInput(cart){
@@ -24,7 +25,8 @@ export default function CartProduct({cart, title, price, image, id, qty, index})
             }
         }
         handleInput(cart);
-    }, [qty, cart])
+        setTotal((price * qty).toFixed(2))
+    }, [price, qty, cart])
 
     function handleCart(){
         dispatch(removeFromCart(index));
@@ -42,7 +44,7 @@ export default function CartProduct({cart, title, price, image, id, qty, index})
         <div className="text-wrapper">
             <div className="text-container">
                 <Link to={`/order/${id}`}>{title}<span> x {qty}</span></Link>
-                <h3>${price * qty}</h3>
+                <h3>${total}</h3>
             </div>
             <div className="button-container">
                 <div className="quanity-container">

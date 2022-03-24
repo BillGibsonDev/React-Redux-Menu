@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 
 // styled
@@ -8,27 +7,29 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 function TotalCounter({cart}) {
-
   const [ total, setTotal ] = useState(0);
   const [ tax, setTax ] = useState(0);
 
   useEffect(() => {
-    function handleTotal(){
+    const handleTotal = () => {
       let value = 0;
+
       for (let i = 0; i < cart.length; i++) {
         value += cart[i].product.price * cart[i].qty;
         value += value * .07;
       }
+
       setTax((value * .07).toFixed(2))
       setTotal(value.toFixed(2));
-      }
+    }
+
     handleTotal();
   }, [cart])
     
   return (    
     <StyledTotal>
-        <h2>Tax: <span>${tax}</span></h2>
-        <h2>Total: <span>${total}</span></h2>
+      <h2>Tax: <span>${tax}</span></h2>
+      <h2>Total: <span>${total}</span></h2>
     </StyledTotal>
   );
 }
@@ -61,6 +62,5 @@ const mapStateToProps = (state) => {
     cart: state.cart.cart,
   };
 };
-
 
 export default connect(mapStateToProps)(TotalCounter);
