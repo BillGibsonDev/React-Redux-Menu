@@ -22,7 +22,7 @@ export default function Footer() {
         </div>
         <div className="icon-wrapper">
             <div className="icon-container">
-                <a href="https://github.com/DevGibby/React-Redux-Menu" rel="noreferrer" target="_blank"><img src={Github} alt="" /></a>
+                <a href="https://github.com/GibbyCodes/React-Redux-Menu" rel="noreferrer" target="_blank"><img src={Github} alt="" /></a>
                 <a href="/" target="_blank"><img src={Twitter} alt="" /></a>
                 <a href="/" target="_blank"><img src={Instagram} alt="" /></a>
             </div>
