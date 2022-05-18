@@ -74,7 +74,7 @@ const StyledNav = styled.nav`
         #order-button {
             background: red;
             width: 150px;
-            height: 30px;
+            height: 40px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -90,6 +90,7 @@ const StyledNav = styled.nav`
             @media(max-width: 650px){
                 width: 100px;
                 font-size: 14px;
+                margin-left: auto;
             }
         }
     }

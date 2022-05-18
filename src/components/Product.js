@@ -44,18 +44,23 @@ width: 100%;
 border: 1px #ffffff71 solid;
 background: #ffffff6f;
 transition: 0.2s;
+opacity: .8;
+border-radius: 6px;
     &:hover {
-        background: #9b9b9b;
-        transform: scale(1.02);
+        opacity: 1;
     }
     img {
+        border-top-right-radius: 6px;
+        border-top-left-radius: 6px;
         width: 100%;
         height: 200px;
     }
     .text-wrapper {
-        width: 98%;
+        width: 100%;
         margin: 0 auto;
         .text-container {
+            width: 98%;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;

@@ -33,6 +33,10 @@ ul {
 a {
     text-decoration: none;
 }
+input  {
+    border-radius: 6px;
+    border: none;
+}
 `;
 
 export default GlobalStyles;
