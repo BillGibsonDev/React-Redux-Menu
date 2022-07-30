@@ -1,5 +1,3 @@
-
-
 // images
 import Github from '../images/githubRed.png';
 import Instagram from '../images/instagramRed.png';

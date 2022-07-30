@@ -17,7 +17,7 @@ function CartIcon({cart}) {
   const [ value, setValue ] = useState(0)
 
   useEffect(() => {
-    function handleCartValue(){
+    const handleCartValue = () =>{
       let num = 0;
       for (let i = 0; i < cart.length; i++) {
         num += cart[i].qty;
@@ -27,13 +27,12 @@ function CartIcon({cart}) {
     handleCartValue();
   }, [cart, value])
   
-
   return (    
     <StyledCart>
-        <Link to={"/cart"}>
-            <h6>{value}</h6>
-            <img src={Cart} alt="" />
-        </Link>
+      <Link to={"/cart"}>
+        <h6>{value}</h6>
+        <img src={Cart} alt="" />
+      </Link>
     </StyledCart>
   );
 }
@@ -72,6 +71,5 @@ const mapStateToProps = (state) => {
     cart: state.cart.cart,
   };
 };
-
 
 export default connect(mapStateToProps)(CartIcon);

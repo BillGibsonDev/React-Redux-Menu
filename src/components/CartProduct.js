@@ -18,7 +18,7 @@ export default function CartProduct({cart, title, price, image, id, qty, index})
     const [ total, setTotal ] = useState();
 
     useEffect(() => {
-        function handleInput(cart){
+        const handleInput = (cart) => {
             let inputs = document.getElementsByClassName("input")
             for (let i = 0; i < inputs.length; i++){
                 inputs[i].defaultValue = cart[i].qty;
@@ -28,11 +28,11 @@ export default function CartProduct({cart, title, price, image, id, qty, index})
         setTotal((price * qty).toFixed(2))
     }, [price, qty, cart])
 
-    function handleCart(){
+    const handleCart = () => {
         dispatch(removeFromCart(index));
     }
 
-    function handleQty(){
+    const handleQty = () => {
         let num = parseInt(value);
         setValue(qty)
         dispatch(adjustQty(id, num));

@@ -16,7 +16,7 @@ export default function Product({product, title, price, image, id}) {
 
     const [value, setValue ] = useState(1)
 
-    function handleCart(){
+    const handleCart = () => {
         let num = parseInt(value)
         dispatch(addToCart(product, num))
         window.alert(`${product.title} added`);
@@ -40,12 +40,12 @@ export default function Product({product, title, price, image, id}) {
 }
 
 const StyledProduct = styled.div`
-width: 100%;
-border: 1px #ffffff71 solid;
-background: #ffffff6f;
-transition: 0.2s;
-opacity: .8;
-border-radius: 6px;
+    width: 100%;
+    border: 1px #ffffff71 solid;
+    background: #ffffff6f;
+    transition: 0.2s;
+    opacity: .8;
+    border-radius: 6px;
     &:hover {
         opacity: 1;
     }

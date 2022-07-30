@@ -26,31 +26,22 @@ const App = () => {
 
   const dispatch = useDispatch();
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-        dispatch(getProducts());
-        dispatch(getCart());
-    }, [dispatch])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    dispatch(getProducts());
+    dispatch(getCart());
+  }, [dispatch])
 
   return (
     <>
-
       <GlobalStyles />
-
       <Nav />
-
       <Routes>
-
         <Route path='/' exact element={<LandingPage />} />
-
         <Route path='/order' element={<OrderPage />} />
-
         <Route path='/order/:id' element={<ProductPage />} />
-
         <Route path='/cart' element={<CartPage />} />
-
       </Routes>
-
       <Footer />
     </>
   );
@@ -62,6 +53,5 @@ const mapStateToProps = (state) => {
     cart: state.cart.cart
   };
 };
-
 
 export default connect(mapStateToProps)(App);

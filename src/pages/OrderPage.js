@@ -17,18 +17,18 @@ const OrderPage = ({products}) => {
 
   const dispatch = useDispatch();
 
-    useEffect(() => {
-      window.scrollTo(0, 0);
-      dispatch(getProducts());
-      dispatch(getCart());
-    }, [dispatch])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    dispatch(getProducts());
+    dispatch(getCart());
+  }, [dispatch])
 
   return (
     <StyledPage>
       {
-        products[18] === undefined ? (
-          <Loader />
-        ): (
+        products[18] === undefined 
+        ? <Loader />
+        : 
           <>
             <h1>Appetizers</h1>
             <Section products={products} type={products[18].type}/>
@@ -45,7 +45,6 @@ const OrderPage = ({products}) => {
             <h1>Salads</h1>
             <Section products={products} type={products[9].type} />
           </>
-        )
       }
     </StyledPage>
   )

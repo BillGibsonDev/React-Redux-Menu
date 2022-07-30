@@ -23,13 +23,12 @@ const CartPage = ({cart}) => {
     <StytledCart>
       <h1>Your Cart</h1>
       {
-        cart.length === 0 ? (
-          <div className="placeholder">
+        cart.length === 0 
+        ? <div className="placeholder">
             <h2>Your Cart is Empty..</h2>
             <Link to="/order">Continue Ordering</Link>
-          </div>
-        ): (
-          <>
+        </div>
+        : <>
             <div className="product-wrapper">
               {
                 cart.map((product, index) => {
@@ -50,8 +49,7 @@ const CartPage = ({cart}) => {
               }
             </div>
             <TotalCounter />
-          </>
-        )
+        </>
       }
     </StytledCart>
   )
@@ -100,12 +98,10 @@ padding-bottom: 30px;
   }
 `;
 
-
 const mapStateToProps = (state) => {
   return {
     cart: state.cart.cart,
   };
 };
-
 
 export default connect(mapStateToProps)(CartPage);

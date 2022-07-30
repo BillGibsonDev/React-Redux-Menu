@@ -18,11 +18,9 @@ const Nav = ({cart}) => {
             <Link id="home-link" to="/">Home</Link>
             <Link to="/order" id="order-button">Order Online</Link>
             {
-                cart.length === 0 ? (
-                    <></>
-                ): (
-                    <CartIcon />
-                )
+                cart.length === 0 
+                ? <></>
+                : <CartIcon /> 
             }
         </div>
     </StyledNav>
@@ -94,7 +92,6 @@ const StyledNav = styled.nav`
             }
         }
     }
-
 `;
 
 const mapStateToProps = (state) => {
@@ -102,6 +99,5 @@ const mapStateToProps = (state) => {
     cart: state.cart.cart,
   };
 };
-
 
 export default connect(mapStateToProps)(Nav);

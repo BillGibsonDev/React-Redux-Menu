@@ -19,17 +19,17 @@ export default function ProductPage() {
 
   const [ value, setValue ] = useState(1)
 
-  function handleCart(){
-      let num = parseInt(value)
-      dispatch(addToCart(product, num))
-      window.alert(`${product.title} updated!`);
+  const handleCart = () => {
+    let num = parseInt(value)
+    dispatch(addToCart(product, num))
+    window.alert(`${product.title} updated!`);
   }
 
   const [ product, setProduct ] = useState([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    function handleProducts(){
+    const handleProducts = () => {
       axios.get(`https://gibbys-galleria.herokuapp.com/menu/${id}`)
       .then(function(response){
         setProduct(response.data)
@@ -75,64 +75,64 @@ margin-top: 20px;
     }
   }
   .text-wrapper {
-      width: 45%;
-      margin: 0 auto;
-      margin-left: 10px;
+    width: 45%;
+    margin: 0 auto;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    @media(max-width: 650px){
+      width: 90%;
+    }
+    .text-container {
       display: flex;
-      justify-content: center;
       flex-direction: column;
-      @media(max-width: 650px){
-        width: 90%;
-      }
-      .text-container {
+      margin-bottom: 20px;
+      .title-wrapper {
         display: flex;
-        flex-direction: column;
-        margin-bottom: 20px;
-        .title-wrapper {
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        h2 {
+          color: #ffffff;
+          font-size: 30px;
+        }
+          h3 {
+          color: #eeeeee;
+          font-size: 16px;
+        }
+      }
+      p {
+        color: #e2e2e2;
+      }
+    }
+    .button-container {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      input {
+          height: 30px;
+          width: 40px;
+          text-align: center;
+      }
+      button {
+          cursor: pointer;
+          background: red;
+          width: 120px;
+          height: 30px;
           display: flex;
-          width: 100%;
-          justify-content: space-between;
+          justify-content: center;
           align-items: center;
-          h2 {
-            color: #ffffff;
-            font-size: 30px;
-          }
-            h3 {
-            color: #eeeeee;
-            font-size: 16px;
-          }
-        }
-        p {
-          color: #e2e2e2;
-        }
-      }
-      .button-container {
-          display: flex;
-          width: 100%;
-          justify-content: space-between;
-          input {
-              height: 30px;
-              width: 40px;
-              text-align: center;
-          }
-          button {
-              cursor: pointer;
-              background: red;
-              width: 120px;
-              height: 30px;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              font-size: 16px;
-              color: white;
-              border-radius: 6px;
-              transition: 0.2s;
-              border: red 1px solid;
-              &:hover {
-                  background: #000000;
-                  text-decoration: none;
-              }
+          font-size: 16px;
+          color: white;
+          border-radius: 6px;
+          transition: 0.2s;
+          border: red 1px solid;
+          &:hover {
+              background: #000000;
+              text-decoration: none;
           }
       }
+    }
   }
 `;
