@@ -1,3 +1,13 @@
 import axios from 'axios';
 
-export const fetchProducts = () => axios.get(`https://gibbys-galleria.herokuapp.com/menu`);
+export const fetchProducts = async () => { 
+    try {
+        await axios.get(`https://gibbys-pizzeria.onrender.com/menu`)
+    }
+    catch(err) {
+        console.log(err);
+        setTimeout(() => {
+            fetchProducts();
+        }, 1000 * 60)
+    }
+};
