@@ -1,3 +1,3 @@
 import axios from 'axios';
 
-export const fetchProducts = () => axios.get(`https://gibbys-galleria.onrender.com/menu`);
+export const fetchProducts = () => axios.get(`https://bills-pizza-palace.onrender.com/menu`);

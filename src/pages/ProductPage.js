@@ -30,7 +30,7 @@ export default function ProductPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
     const handleProducts = () => {
-      axios.get(`https://gibbys-galleria.onrender.com/menu/${id}`)
+      axios.get(`https://bills-pizza-palace.onrender.com/menu/${id}`)
       .then(function(response){
         setProduct(response.data)
       })
