@@ -4,7 +4,7 @@ import styled from "styled-components"
 // router
 import { Link } from "react-router-dom";
 
-// comppnents
+// components
 import CartIcon from './CartIcon.js';
 
 // redux
@@ -16,7 +16,7 @@ const Nav = ({cart}) => {
         <Link to="/" id="logo">Via Napoli</Link>
         <div className="nav-links">
             <Link id="home-link" to="/">Home</Link>
-            <Link to="/order" id="order-button">Order Online</Link>
+            <Link to="/order" id="order-button" style={{ marginLeft: cart.length < 1 ? 'auto': '0' }}>Order Online</Link>
             {
                 cart.length === 0 
                 ? <></>
@@ -47,11 +47,8 @@ const StyledNav = styled.nav`
         align-items: center;
         max-width: 300px;
         width: 100%;
-        @media(max-width: 650px){
-            max-width: 220px;
-        }
-        @media(max-width: 375px){
-            max-width: 150px;
+        @media(max-width: 435px){
+            max-width: 175px;
         }
         a {
             font-size: 16px;
@@ -65,7 +62,7 @@ const StyledNav = styled.nav`
             }
         }
         #home-link {
-            @media(max-width: 375px){
+            @media(max-width: 435px){
                 display: none;
             }
         }
@@ -88,7 +85,11 @@ const StyledNav = styled.nav`
             @media(max-width: 650px){
                 width: 100px;
                 font-size: 14px;
-                margin-left: auto;
+            }
+            @media(max-width: 435px){
+                width: 100px;
+                font-size: 14px;
+                margin-left: 0;
             }
         }
     }

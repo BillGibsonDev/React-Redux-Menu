@@ -43,11 +43,7 @@ const StyledCart = styled.div`
       position: relative;
       display: block;
       width: 40px;
-      height: 35px;
-      @media(max-width: 650px){
-        width: 30px;
-        height: 30px;
-      }
+      height: 40px;
       h6 {
         font-size: 16px;
         left: 45%;
