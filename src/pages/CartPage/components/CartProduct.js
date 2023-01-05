@@ -156,6 +156,7 @@ const StyledProduct = styled.div`
                 textarea {
                     font-size: 1em;
                     width: 100%;
+                    padding: 2px;
                 }
             }
         }
