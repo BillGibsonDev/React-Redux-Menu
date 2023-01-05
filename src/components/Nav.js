@@ -48,10 +48,10 @@ const StyledNav = styled.nav`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        max-width: 250px;
+        max-width: 300px;
         width: 100%;
         @media(max-width: 435px){
-            max-width: 175px;
+            max-width: 200px;
         }
         a {
             font-size: 1em;
@@ -62,11 +62,6 @@ const StyledNav = styled.nav`
             }
             @media(max-width: 650px){
                 font-size: 14px;
-            }
-        }
-        #home-link {
-            @media(max-width: 435px){
-                display: none;
             }
         }
     }

@@ -58,6 +58,7 @@ const StyledQuantity = styled.div`
     input[type=number]::-webkit-outer-spin-button {
         -webkit-appearance: none;
     }
+    
     .inactive-btn {
         color: gray;
         border: gray 1px solid;

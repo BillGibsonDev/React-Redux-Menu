@@ -1,17 +1,17 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 // styled
-import styled from "styled-components";
+import styled from 'styled-components';
 
 // router
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 // redux
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
 // component
 import CartProduct from './components/CartProduct';
-import TotalCounter from "./components/TotalCounter";
+import TotalCounter from './components/TotalCounter';
 
 const CartPage = ({cart}) => {
 
@@ -20,7 +20,7 @@ const CartPage = ({cart}) => {
   }, []);
 
   return (
-    <StytledCart>
+    <StyledCart>
       <h1>Your Cart</h1>
       {
         cart.length === 0 
@@ -53,15 +53,15 @@ const CartPage = ({cart}) => {
             <TotalCounter />
         </>
       }
-    </StytledCart>
+    </StyledCart>
   )
 }
 
-const StytledCart = styled.section`
-background: #bbbbbb;
-border-radius: 12px;
-min-height: 40vh;
-padding-bottom: 30px;
+const StyledCart = styled.section`
+  background: #bbbbbb;
+  border-radius: 12px;
+  min-height: 40vh;
+  padding-bottom: 30px;
   h1 {
     display: flex;
     font-size: 2em;
