@@ -22,7 +22,7 @@ function CartIcon({cart}) {
       for (let i = 0; i < cart.length; i++) {
         num += cart[i].qty;
       }
-      setValue(num)
+        setValue(num)
       }
     handleCartValue();
   }, [cart, value])
@@ -42,18 +42,15 @@ const StyledCart = styled.div`
   a {
       position: relative;
       display: block;
-      width: 40px;
-      height: 40px;
+      width: 30px;
+      height: 30px;
       h6 {
-        font-size: 16px;
+        font-size: 10px;
         left: 45%;
         top: 30%;
         transform: translate(-50%, -50%);
         position: absolute;
         color: #fff;
-        @media(max-width: 650px){
-          font-size: 12px;
-        }
       }
       img {
         width: 100%;

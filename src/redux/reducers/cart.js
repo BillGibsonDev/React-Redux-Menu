@@ -1,4 +1,4 @@
-import { REMOVE_FROM_CART, ADD_TO_CART, GET_CART, ADJUST_QTY } from '../constants/actionTypes';
+import { REMOVE_FROM_CART, ADD_TO_CART, GET_CART, ADJUST_QTY, EDIT_REQUEST } from '../constants/actionTypes';
 
 const initialState = {
   cart: [],
@@ -25,8 +25,16 @@ const reducer = (state = initialState, action) => {
     case ADJUST_QTY:
       return {
         cart: state.cart.map((product) =>
-          product.product._id === action.payload.id
+          product.order_id === action.payload.id
             ? { ...product, qty: action.payload.qty }
+            : product
+        ),
+      };
+      case EDIT_REQUEST:
+      return {
+        cart: state.cart.map((product) =>
+          product.order_id === action.payload.id
+            ? { ...product, request: action.payload.request }
             : product
         ),
       };
