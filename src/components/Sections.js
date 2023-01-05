@@ -2,7 +2,7 @@
 import styled from "styled-components"
 
 // components
-import Product from "../components/Product";
+import Product from "../pages/ProductPage/components/Product";
 
 // redux
 import { connect } from "react-redux";
