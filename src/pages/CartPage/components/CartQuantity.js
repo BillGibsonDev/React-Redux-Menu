@@ -31,7 +31,7 @@ const StyledQuantity = styled.div`
         margin-right: auto;
     }
     button {
-        font-size: 16px;
+        font-size: 1em;
         background: none;
         border: 1px solid black;
         border-radius: 50%;
@@ -54,6 +54,16 @@ const StyledQuantity = styled.div`
         appearance: textfield;
     }
 
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+    }
+    .inactive-btn {
+        color: gray;
+        border: gray 1px solid;
+        cursor:  not-allowed;
+    }
+`;
     input[type=number]::-webkit-inner-spin-button,
     input[type=number]::-webkit-outer-spin-button {
         -webkit-appearance: none;

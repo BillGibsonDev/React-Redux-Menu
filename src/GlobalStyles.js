@@ -15,13 +15,14 @@ const GlobalStyles = createGlobalStyle`
         letter-spacing: .5px;
         line-height: 1.5;
         @media (max-width: 1450px){
-            font-size: 70%;
+            font-size: 90%;
         }  
         @media (max-width: 1280px){
-            width: 90%
+            width: 90%;
         } 
         @media (max-width: 700px){
-            width: 95%
+            width: 95%;
+            font-size: 80%;
         } 
     }
     button, label, input, textarea{

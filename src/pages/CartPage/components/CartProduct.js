@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 
 // images
-import Edit from '../../../images/editPencilBlack.png';
 import Delete from '../../../images/blackTrash.png';
 
 // components
@@ -23,8 +22,6 @@ export default function CartProduct({cart, title, price, image, order_id, id, qt
 
     const [ value, setValue ] = useState(qty);
     const [ total, setTotal ] = useState();
-    const [ isActive, setActive ] = useState(false);
-    const [ editRequest, setEditRequest ] = useState(request)
 
     useEffect(() => {
         const handleInput = (cart) => {
@@ -49,11 +46,7 @@ export default function CartProduct({cart, title, price, image, order_id, id, qt
         dispatch(adjustQty(order_id, num));
     }
 
-    const toggleEdit = () => {
-        setActive(!isActive);
-    }
-
-    const handleEditRequest = (order_id, request) => {
+    const handleEditRequest = (request, order_id) => {
         dispatch(requestEdit(order_id, request))
     }
 
@@ -63,18 +56,14 @@ export default function CartProduct({cart, title, price, image, order_id, id, qt
         <div className="text-wrapper">
             <div className="text-container">
                 <Link to={`/order/${id}`}>{title}<span> x {qty}</span></Link>
-                <h3>${total}</h3>
-                <h3 id="requests">Requests: 
+                <h3 id="total">${total}</h3>
+                <div className="request-container">
+                    <h3 id="requests">Requests: </h3>
                     {
                         !request 
-                        ? <span>none<button id="edit" onClick={() => { toggleEdit();  }}><img src={Edit} alt=""/></button></span>
-                        : <span>{request} <button id="edit" onClick={() => { toggleEdit();  }}><img src={Edit} alt=""/></button></span>
+                        ? <textarea onChange={(e) => { handleEditRequest(e.target.value, order_id)}} name="edit-request" id="edit-request" defaultValue={request} cols="30" rows="2" placeholder={'none'}></textarea>
+                        : <textarea onChange={(e) => { handleEditRequest(e.target.value, order_id)}} name="edit-request" id="edit-request" defaultValue={request} cols="30" rows="2"></textarea>
                     }
-                </h3>
-                <div className="edit-request-container" style={{display: isActive ? "block" : "none"}}>
-                    <h3>Edit Request</h3>
-                    <textarea onChange={(e) => { setEditRequest(e.target.value)}} name="edit-request" id="edit-request" defaultValue={request} cols="30" rows="5"></textarea>
-                    <button onClick={() => { handleEditRequest(order_id, editRequest); toggleEdit(); }}>Update</button>
                 </div>
             </div>
             <div className="button-container">
@@ -97,76 +86,90 @@ const StyledProduct = styled.div`
     margin: auto;
     padding: 10px 0;
     display: flex;
-    @media(max-width: 550px){
+    @media(max-width: 650px){
         flex-direction: column;
         margin-bottom: 20px;
     }
     a img {
         width: 200px;
         height: 150px;
-        @media(max-width: 850px){
-            width: 150px;
+        @media(max-width: 650px){
+            width: 100%;
             height: 120px;
+            object-fit: cover;
         }
     }
     .text-wrapper {
         display: flex;
         width: 70%;
-        margin: auto;
-        @media(max-width: 850px){
+        margin: auto auto auto 6px;
+        @media(max-width: 650px){
             flex-direction: column;
             width: 100%;
-            margin: auto 10px;
-        }
-        @media(max-width: 550px){
             margin: auto;
         }
         .text-container {
+            display: flex;
+            flex-direction: column;
             width: 100%;
             justify-content: space-between;
-            @media(max-width: 850px){
-                display: flex;
+            margin: auto;
+            @media(max-width: 650px){
+                display: grid;
                 width: 100%;
-                justify-content: space-between;
+                grid-template-areas: 
+                'area1 area2'
+                'area3 area3'
+                ;
             }
             a {
                 color: #000000;
-                font-size: 16px;
+                font-size: 1.2em;
+                grid-area: area1;
                 &:hover {
                     text-decoration: underline;
                     text-underline-position: under;
                 }
                 span {
                     color: #3b3b3b;
+                    width: 100%;
                 }
             }
             h3 {
-                font-size: 14px;
+                font-size: 1em;
             }
-            #requests {
-                display: flex;
-                flex-direction: column;
-                margin-top: 6px;
-                span {
-                    font-weight: 400;
-                    display: flex;
-                    align-items: center;
+            #total {
+                @media(max-width: 650px){
+                    margin-left: auto;
+                    grid-area: area2;
                 }
             }
-            p {
-                font-size: 14px;
-            }
-            .edit-request-container {
-                margin-top: 10px;
+            .request-container {
+                width: 100%;
+                grid-area: area3;
+                #requests {
+                    display: flex;
+                    flex-direction: column;
+                    margin-top: 6px;
+                    width: 100%;
+                }
+                textarea {
+                    font-size: 1em;
+                    width: 100%;
+                }
             }
         }
         .button-container {
             display: flex;
             height: 100%;
-            min-width: 300px;
+            min-width: 200px;
             margin-left: auto;
+            @media(max-width: 650px){
+                margin-left: 0;
+                margin-top: 20px;
+            }
         }
-        #remove, #edit {
+        #remove {
             cursor: pointer;
             background: none;
             border: none;
@@ -174,9 +177,6 @@ const StyledProduct = styled.div`
                 width: 25px;
                 height: 25px;
             }
-        }
-        #edit {
-            margin-left: 6px;
         }
     }
 `;

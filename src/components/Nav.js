@@ -38,10 +38,10 @@ const StyledNav = styled.nav`
     }
     #logo {
         color: red;
-        font-size: 30px;
+        font-size: 2em;
         font-family: 'Lobster', cursive;
         @media(max-width: 650px){
-           font-size: 24px;
+           font-size: 1.5em;
         }
     }
     .nav-links {
@@ -54,7 +54,7 @@ const StyledNav = styled.nav`
             max-width: 175px;
         }
         a {
-            font-size: 16px;
+            font-size: 1em;
             color: white;
             &:hover {
                text-decoration: underline;

@@ -66,6 +66,74 @@ export default function ProductPage() {
     </StyledPage>
   )
 }
+import { useState, useEffect } from 'react';
+import axios from "axios";
+
+// components
+import Quantity from './components/Quantity.js';
+
+// styled
+import styled from "styled-components";
+
+// router
+import { useParams } from 'react-router-dom';
+
+// redux
+import { addToCart } from '../../redux/actions/cart.js';
+import { useDispatch } from 'react-redux';
+
+export default function ProductPage() {
+
+  const { id } = useParams();
+
+  const dispatch = useDispatch();
+
+  const [ value, setValue ] = useState(1);
+  const [ request, setRequest ] = useState('');
+
+  const handleCart = () => {
+    let num = parseInt(value)
+    dispatch(addToCart(product, num, request))
+    window.alert(`${product.title} added!`);
+  }
+
+  const [ product, setProduct ] = useState([]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const handleProducts = () => {
+      axios.get(`https://bills-pizza-palace.onrender.com/menu/${id}`)
+      .then(function(response){
+        setProduct(response.data);
+      })
+    }
+    handleProducts();
+  }, [ id ]);
+
+  return (
+    <StyledPage>
+      <div className="product-wrapper">
+        <img src={product.image} alt="" />
+        <div className="text-wrapper">
+          <div className="text-container">
+            <h2>{product.title}</h2>
+            <h3>${product.price}</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos quam sapiente exercitationem modi, perspiciatis, voluptatibus amet doloribus praesentium aliquam cupiditate temporibus assumenda! Mollitia culpa dignissimos reprehenderit dolorum officiis architecto quia!</p>
+          </div>
+          <Quantity
+            value={value}
+            setValue={setValue}
+          />
+          <div className="request-container">
+            <h3>Special Requests</h3>
+            <textarea name="request" id="request" onChange={(e)=>{setRequest(e.target.value)}} cols="30" rows="5" placeholder='Example: Please no anchovies!'></textarea>
+          </div>
+          <button className="order-button" onClick={()=>{handleCart(product, value, request)}}>Order</button>
+        </div>
+      </div>
+    </StyledPage>
+  )
+}
 
 const StyledPage = styled.div`
   width: 100%;
@@ -107,11 +175,11 @@ const StyledPage = styled.div`
         margin-bottom: 20px;
         h2 {
           color: #ffffff;
-          font-size: 30px;
+          font-size: 2em;
         }
         h3 {
           color: #eeeeee;
-          font-size: 16px;
+          font-size: 1.2em;
           margin-bottom: 6px;
         }
         }
@@ -124,12 +192,13 @@ const StyledPage = styled.div`
       margin-top: 20px;
       h3 {
         color: #eeeeee;
-        font-size: 16px;
+        font-size: 1em;
         margin-bottom: 2px;
       }
       textarea {
         width: 100%;
         padding: 2px;
+        font-size: 1em;;
       }
     }
     .order-button {
@@ -140,7 +209,7 @@ const StyledPage = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 16px;
+      font-size: 1em;
       color: white;
       border-radius: 6px;
       transition: 0.2s;

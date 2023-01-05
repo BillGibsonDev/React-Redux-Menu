@@ -32,11 +32,11 @@ const StyledQuantity = styled.div`
     }
     h3 {
         margin-right: auto;
-        font-size: 14px;
+        font-size: 1em;
         font-weight: 400;
     }
     button {
-        font-size: 16px;
+        font-size: 1em;
         background: none;
         border: 1px solid black;
         border-radius: 50%;
