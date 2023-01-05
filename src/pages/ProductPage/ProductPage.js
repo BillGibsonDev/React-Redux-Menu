@@ -12,9 +12,9 @@ import { useParams } from 'react-router-dom';
 
 // redux
 import { addToCart } from '../../redux/actions/cart.js';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 
-export default function ProductPage() {
+const ProductPage = ({cart}) => {
 
   const { id } = useParams();
 
@@ -24,9 +24,14 @@ export default function ProductPage() {
   const [ request, setRequest ] = useState('');
 
   const handleCart = () => {
-    let num = parseInt(value)
-    dispatch(addToCart(product, num, request))
-    window.alert(`${product.title} added!`);
+    let num = parseInt(value);
+    let cartCheck = cart.find((product) => product.product._id === id);
+    if(cartCheck && cartCheck.qty + value > 10){
+      alert('Sorry, items only available in quantities of 10 or less!')
+    } else {
+      dispatch(addToCart(product, num, request));
+      window.alert(`${product.title} added!`);
+    }
   }
 
   const [ product, setProduct ] = useState([]);
@@ -157,3 +162,11 @@ const StyledPage = styled.div`
     }
   }
 `;
+
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart.cart,
+  };
+};
+
+export default connect(mapStateToProps)(ProductPage);

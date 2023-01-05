@@ -48,7 +48,7 @@ const StyledNav = styled.nav`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        max-width: 300px;
+        max-width: 220px;
         width: 100%;
         @media(max-width: 435px){
             max-width: 200px;
