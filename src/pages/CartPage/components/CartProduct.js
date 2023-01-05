@@ -8,6 +8,7 @@ import Delete from '../../../images/blackTrash.png';
 
 // components
 import CartQuantity from "./CartQuantity.js";
+import Request from "./Request";
 
 // router
 import { Link } from "react-router-dom";
@@ -57,14 +58,11 @@ export default function CartProduct({cart, title, price, image, order_id, id, qt
             <div className="text-container">
                 <Link to={`/order/${id}`}>{title}<span> x {qty}</span></Link>
                 <h3 id="total">${total}</h3>
-                <div className="request-container">
-                    <h3 id="requests">Requests: </h3>
-                    {
-                        !request 
-                        ? <textarea onChange={(e) => { handleEditRequest(e.target.value, order_id)}} name="edit-request" id="edit-request" defaultValue={request} cols="30" rows="2" placeholder={'none'}></textarea>
-                        : <textarea onChange={(e) => { handleEditRequest(e.target.value, order_id)}} name="edit-request" id="edit-request" defaultValue={request} cols="30" rows="2"></textarea>
-                    }
-                </div>
+                <Request
+                    order_id={order_id}
+                    request={request}
+                    handleEditRequest={handleEditRequest}
+                />
             </div>
             <div className="button-container">
                 <CartQuantity
@@ -144,20 +142,9 @@ const StyledProduct = styled.div`
                     grid-area: area2;
                 }
             }
-            .request-container {
+            #request-container {
                 width: 100%;
                 grid-area: area3;
-                #requests {
-                    display: flex;
-                    flex-direction: column;
-                    margin-top: 6px;
-                    width: 100%;
-                }
-                textarea {
-                    font-size: 1em;
-                    width: 100%;
-                    padding: 2px;
-                }
             }
         }
         .button-container {
