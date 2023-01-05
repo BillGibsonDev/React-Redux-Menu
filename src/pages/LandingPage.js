@@ -28,7 +28,7 @@ const StyledLanding = styled.section`
     width: 100%;
     @media (max-width: 650px){
         flex-direction: column;
-        min-height: 50vh;
+        min-height: 70vh;
     } 
     img {
         width: 50%;
@@ -53,6 +53,7 @@ const StyledLanding = styled.section`
         min-height: 20vh;
         @media (max-width: 650px){
             width: 100%;
+            height: 100%;
             flex-direction: row;
             align-items: center;
             justify-content: space-evenly;
@@ -77,11 +78,12 @@ const StyledLanding = styled.section`
             display: flex;
             flex-direction: column;
             h2 {
-                font-size: 34px;
+                font-size: 2.4em;
                 font-family: 'Lobster', cursive;
             }
             h3 {
                 margin: 10px 0 16px 16px;
+                font-size: 1em;
             }
         }
         a {
@@ -91,7 +93,7 @@ const StyledLanding = styled.section`
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 24px;
+            font-size: 1.5em;
             color: white;
             border-radius: 6px;
             transition: 0.2s;

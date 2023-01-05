@@ -45,7 +45,7 @@ const StyledCart = styled.div`
       width: 40px;
       height: 40px;
       h6 {
-        font-size: 16px;
+        font-size: .8em;
         left: 45%;
         top: 30%;
         transform: translate(-50%, -50%);

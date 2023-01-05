@@ -51,13 +51,13 @@ const OrderPage = ({products}) => {
 }
 
 const StyledPage = styled.section`
-background: #bbbbbb;
-border-radius: 12px;
-min-height: 60vh;
-padding-bottom: 30px;
+  background: #bbbbbb;
+  border-radius: 12px;
+  min-height: 60vh;
+  padding-bottom: 30px;
   h1 {
     display: flex;
-    font-size: 30px;
+    font-size: 2em;
     border-bottom: 1px solid black;
     width: 90%;
     margin: 20px auto;

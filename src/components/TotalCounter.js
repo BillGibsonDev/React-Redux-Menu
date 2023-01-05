@@ -39,19 +39,8 @@ const StyledTotal = styled.div`
   margin: auto;
   align-items: flex-end;
   border-top: 1px solid black;
-  a {
-    position: relative;
-    display: block;
-    width: 40px;
-    height: 35px;
-    h6 {
-        font-size: 20px;
-        left: 45%;
-        top: 30%;
-        transform: translate(-50%, -50%);
-        position: absolute;
-        color: #fff;
-    }
+  h2 {
+    font-size: 1em;
   }
 `;
 

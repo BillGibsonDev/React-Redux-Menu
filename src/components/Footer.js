@@ -51,7 +51,7 @@ const StyledFooter = styled.footer`
             margin: 0;
             text-align: center;
             color: #bbbbbb;
-            font-size: 16px;
+            font-size: .8em;
         }
         h2 span {
             margin-right: 6px;
@@ -98,7 +98,7 @@ const StyledFooter = styled.footer`
             width: 50%;
             text-align: center;
             color: #bbbbbb;
-            font-size: 16px;
+            font-size: .8em;
             @media (max-width: 450px){
                 width: 80%;
                 margin-top: 20px;

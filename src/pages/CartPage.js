@@ -62,7 +62,7 @@ min-height: 40vh;
 padding-bottom: 30px;
   h1 {
     display: flex;
-    font-size: 30px;
+    font-size: 2em;
     border-bottom: 1px solid black;
     width: 90%;
     margin: 20px auto;
@@ -84,7 +84,7 @@ padding-bottom: 30px;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 16px;
+      font-size: 1em;
       color: white;
       border-radius: 6px;
       transition: 0.2s;
