@@ -10,11 +10,24 @@ const reducer = (state = initialState, action) => {
         ...state,
         cart: [...state.cart], 
       };
+
     case ADD_TO_CART:
-      return {
-        ...state,
-        cart: [ ...state.cart, { ...action.payload } ], 
-      };
+      let item = state.cart.find((product => product.product._id === action.payload.product._id))
+      if(item){
+        return {
+          ...state,
+          cart: state.cart.map((product) =>
+          product.product._id === action.payload.product._id
+            ? { ...product, qty: product.qty + action.payload.qty }
+            : product
+        )}
+      } else {
+        return {
+          ...state,
+          cart: [ ...state.cart, { ...action.payload } ],
+        }
+      }
+
     case REMOVE_FROM_CART:
       return {
         cart: [
@@ -22,6 +35,7 @@ const reducer = (state = initialState, action) => {
           ...state.cart.slice(action.payload.index + 1)
         ],
       };
+
     case ADJUST_QTY:
       return {
         cart: state.cart.map((product) =>
@@ -30,6 +44,7 @@ const reducer = (state = initialState, action) => {
             : product
         ),
       };
+
       case EDIT_REQUEST:
       return {
         cart: state.cart.map((product) =>
@@ -38,6 +53,7 @@ const reducer = (state = initialState, action) => {
             : product
         ),
       };
+
     default:
       return {
         ...state
