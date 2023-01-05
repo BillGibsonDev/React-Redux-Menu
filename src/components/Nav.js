@@ -16,7 +16,7 @@ const Nav = ({cart}) => {
         <Link to="/" id="logo">Via Napoli</Link>
         <div className="nav-links">
             <Link id="home-link" to="/">Home</Link>
-            <Link to="/order" id="order-button" style={{ marginLeft: cart.length < 1 ? 'auto': '0' }}>Order Online</Link>
+            <Link to="/order" style={{ marginLeft: cart.length < 1 ? 'auto': '0' }}>Order Online</Link>
             {
                 cart.length === 0 
                 ? <></>
@@ -33,6 +33,9 @@ const StyledNav = styled.nav`
     align-items: center;
     width: 100%;
     justify-content: space-between;
+    @media(max-width: 650px){
+        min-height: 5vh;
+    }
     #logo {
         color: red;
         font-size: 2em;
@@ -45,7 +48,7 @@ const StyledNav = styled.nav`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        max-width: 300px;
+        max-width: 250px;
         width: 100%;
         @media(max-width: 435px){
             max-width: 175px;
@@ -64,32 +67,6 @@ const StyledNav = styled.nav`
         #home-link {
             @media(max-width: 435px){
                 display: none;
-            }
-        }
-        #order-button {
-            background: red;
-            width: 150px;
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 16px;
-            color: white;
-            border-radius: 6px;
-            transition: 0.2s;
-            border: red 1px solid;
-            &:hover {
-                background: #000000;
-                text-decoration: none;
-            }
-            @media(max-width: 650px){
-                width: 100px;
-                font-size: 14px;
-            }
-            @media(max-width: 435px){
-                width: 100px;
-                font-size: 14px;
-                margin-left: 0;
             }
         }
     }

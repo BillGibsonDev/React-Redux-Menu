@@ -20,7 +20,7 @@ export default function Footer() {
         </div>
         <div className="icon-wrapper">
             <div className="icon-container">
-                <a href="https://github.com/GibbyCodes/React-Redux-Menu" rel="noreferrer" target="_blank"><img src={Github} alt="" /></a>
+                <a href="https://github.com/BillGibsonDev/React-Redux-Menu" rel="noreferrer" target="_blank"><img src={Github} alt="" /></a>
                 <a href="/" target="_blank"><img src={Twitter} alt="" /></a>
                 <a href="/" target="_blank"><img src={Instagram} alt="" /></a>
             </div>
@@ -54,11 +54,12 @@ const StyledFooter = styled.footer`
             font-size: .8em;
         }
         h2 span {
-            margin-right: 6px;
+            margin-right: 3px;
         }
         img {
-            width: 30px;
-            height: 30px;
+            width: 25px;
+            height: 25px;
+            margin-right: 4px;
         }
         .location-container {
             display: flex;
@@ -67,31 +68,30 @@ const StyledFooter = styled.footer`
             align-items: center;
             border-bottom: 1px solid #fff;
             h2 {
-                margin: 6px;
+                margin: 0;
             }
         }
     }
     .icon-wrapper {
         display: flex;
-        max-width: 600px;
+        max-width: 300px;
         width: 100%;
         justify-content: space-between;
         align-items: center;
         @media (max-width: 450px){
             width: 80%;
-            flex-direction: column;
         }
         .icon-container {
             display: flex;
             justify-content: space-between;
-            max-width: 600px;
+            max-width: 300px;
             width: 40%;
             @media (max-width: 450px){
-                width: 80%;
+                width: 50%;
             }
             img {
-                width: 40px;
-                height: 40px;
+                width: 30px;
+                height: 30px;
             }
         }
         h2 {
@@ -101,7 +101,6 @@ const StyledFooter = styled.footer`
             font-size: .8em;
             @media (max-width: 450px){
                 width: 80%;
-                margin-top: 20px;
             }
         }
     }

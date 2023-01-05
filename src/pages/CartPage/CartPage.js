@@ -10,8 +10,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 // component
-import CartProduct from '../components/CartProduct';
-import TotalCounter from "../components/TotalCounter";
+import CartProduct from './components/CartProduct';
+import TotalCounter from "./components/TotalCounter";
 
 const CartPage = ({cart}) => {
 
@@ -43,6 +43,8 @@ const CartPage = ({cart}) => {
                       image={product.product.image}
                       id={product.product._id}
                       qty={product.qty}
+                      request={product.request}
+                      order_id={product.order_id}
                     />
                   )
                 })
