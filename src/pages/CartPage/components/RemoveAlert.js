@@ -18,16 +18,14 @@ export const RemoveAlert = ({RemoveAlertRef, handleCartAlert, title, index, hand
 const StyledAlert = styled.div`
     display: none;
     position: absolute;
-    width: 101%;
-    height: 101%;
+    width: 100%;
+    height: 100%;
     z-index: 100;
     text-align: center;
     margin: auto;
-    background: #000000;
-    border-radius: 12px;
     transition: 0.2s;
-    top: -1%;
-    left: -1%;
+    top: 0;
+    left: 0;
     .alert-container {
         position: absolute;
         left: 50%;
@@ -37,6 +35,7 @@ const StyledAlert = styled.div`
         background: white;
         border-radius: 12px;
         width: 90%;
+        border: 1px solid ${palette.ACCENTCOLOR};
         h1 {
             @media(max-width: 650px){
                 font-size: 1.5em;
