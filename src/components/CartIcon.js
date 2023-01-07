@@ -14,24 +14,25 @@ import Cart from '../images/whiteCart.png';
 
 function CartIcon({cart}) {
 
-  const [ value, setValue ] = useState(0)
+  const [ quantity, setQuantity ] = useState(0)
 
   useEffect(() => {
     const handleCartValue = () =>{
-      let num = 0;
-      for (let i = 0; i < cart.length; i++) {
-        num += cart[i].qty;
-      }
-        setValue(num)
-      }
+      let cartQuantity = cart.reduce((sum, cart) => sum + cart.qty, 0);
+      setQuantity(cartQuantity);
+    }
     handleCartValue();
-  }, [cart, value])
+  }, [cart, quantity])
   
   return (    
     <StyledCart>
       <Link to={"/cart"}>
-        <h6>{value}</h6>
-        <img src={Cart} alt="" />
+        {
+          quantity === 0
+          ?<></>
+          :<h6>{quantity}</h6>
+        }
+        <img src={Cart} alt="Cart" />
       </Link>
     </StyledCart>
   );

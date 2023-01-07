@@ -12,17 +12,17 @@ export default function Footer() {
   return (
     <StyledFooter>
         <div className="contact-container">
-            <h2><span><img src={Phone} alt="" /></span>123-456-7890</h2>
+            <h2><span><img src={Phone} alt="Phone Number is" /></span>123-456-7890</h2>
             <div className="location-container">
-                <h2><span><img src={Location} alt="" /></span>123 Main Street,</h2>
+                <h2><span><img src={Location} alt="Location is" /></span>123 Main Street,</h2>
                 <h2>Township, NJ 08778</h2>
             </div>
         </div>
         <div className="icon-wrapper">
             <div className="icon-container">
-                <a href="https://github.com/BillGibsonDev/React-Redux-Menu" rel="noreferrer" target="_blank"><img src={Github} alt="" /></a>
-                <a href="/" target="_blank"><img src={Twitter} alt="" /></a>
-                <a href="/" target="_blank"><img src={Instagram} alt="" /></a>
+                <a href="https://github.com/BillGibsonDev/React-Redux-Menu" rel="noreferrer" target="_blank"><img src={Github} alt="Github Account" /></a>
+                <a href="/" target="_blank"><img src={Twitter} alt="Twitter Account" /></a>
+                <a href="/" target="_blank"><img src={Instagram} alt="Instagram Account" /></a>
             </div>
             <h2>Via Napoli © 2022</h2>
         </div>

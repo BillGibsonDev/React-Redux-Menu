@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 // styled
 import styled from 'styled-components';
+import * as palette from '../../styled/ThemeVariables.js';
 
 // router
 import { Link } from 'react-router-dom';
@@ -36,7 +37,6 @@ const CartPage = ({cart}) => {
                     <CartProduct
                       key={index}
                       index={index}
-                      cart={cart}
                       product={product.product}
                       title={product.product.title}
                       price={product.product.price}
@@ -80,7 +80,7 @@ const StyledCart = styled.section`
     }
     a {
       cursor: pointer;
-      background: red;
+      background:${palette.ACCENTCOLOR};
       width: 200px;
       height: 30px;
       display: flex;
@@ -90,7 +90,7 @@ const StyledCart = styled.section`
       color: white;
       border-radius: 6px;
       transition: 0.2s;
-      border: red 1px solid;
+      border:${palette.ACCENTCOLOR} 1px solid;
       margin-top: 20px;
       &:hover {
         background: #000000;

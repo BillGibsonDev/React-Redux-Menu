@@ -1,5 +1,6 @@
 // styled
 import styled from "styled-components";
+import * as palette from '../../../styled/ThemeVariables.js';
 
 // router
 import { Link } from "react-router-dom";
@@ -8,7 +9,7 @@ export default function Product({title, price, image, id}) {
    
   return (
     <StyledProduct>
-        <Link to={`/order/${id}`}><img src={image} alt="" /></Link>
+        <Link to={`/order/${id}`}><img src={image} alt={title} /></Link>
         <div className="text-wrapper">
             <div className="text-container">
                 <Link to={`/order/${id}`}>{title}</Link>
@@ -79,7 +80,7 @@ const StyledProduct = styled.div`
         }
             #order-btn {
                 cursor: pointer;
-                background: red;
+                background:${palette.ACCENTCOLOR};
                 width: 70%;
                 height: 30px;
                 display: flex;
@@ -89,7 +90,7 @@ const StyledProduct = styled.div`
                 color: white;
                 border-radius: 6px;
                 transition: 0.2s;
-                border: red 1px solid;
+                border:${palette.ACCENTCOLOR} 1px solid;
                 &:hover {
                     background: #000000;
                     text-decoration: none;

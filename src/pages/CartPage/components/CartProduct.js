@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // styled
 import styled from "styled-components";
@@ -16,44 +16,46 @@ import { Link } from "react-router-dom";
 // redux
 import { removeFromCart, adjustQty, requestEdit } from '../../../redux/actions/cart.js';
 import { useDispatch } from 'react-redux';
+import { RemoveAlert } from "./RemoveAlert";
 
-export default function CartProduct({cart, title, price, image, order_id, id, qty, index, request}) {
+export default function CartProduct({title, price, image, order_id, id, qty, index, request}) {
 
     const dispatch = useDispatch();
 
-    const [ value, setValue ] = useState(qty);
+    const [ quantity, setQuantity ] = useState(qty);
     const [ total, setTotal ] = useState();
 
-    useEffect(() => {
-        const handleInput = (cart) => {
-            let inputs = document.getElementsByClassName("input")
-            for (let i = 0; i < inputs.length; i++){
-                inputs[i].defaultValue = cart[i].qty;
-            }
-        }
-        handleInput(cart);
-        setTotal((price * qty).toFixed(2))
-    }, [price, qty, cart])
+    const RemoveAlertRef = useRef();
 
-    const handleRemoveFromCart = () => {
-        const result = window.confirm(`Are you sure you want to remove ${title}?`);
-        if(result){
-            dispatch(removeFromCart(index));
+    useEffect(() => {
+        setTotal((price * qty).toFixed(2));
+    }, [price, qty])
+
+    const handleCartAlert = () => {
+        const AlertComponent = RemoveAlertRef.current;
+        if(AlertComponent.style.display === 'block'){ 
+            AlertComponent.style.display = 'none';
+        } else {
+            AlertComponent.style.display = 'block';
         }
     }
 
-    const handleQty = (order_id, value) => {
-        let num = parseInt(value);
-        dispatch(adjustQty(order_id, num));
+    const handleRemoveFromCart = () => {
+        dispatch(removeFromCart(index));
+    }
+
+    const handleQty = (order_id, quantity) => {
+        let adjustedQty = parseInt(quantity);
+        dispatch(adjustQty(order_id, adjustedQty));
     }
 
     const handleEditRequest = (request, order_id) => {
-        dispatch(requestEdit(order_id, request))
+        dispatch(requestEdit(order_id, request));
     }
 
   return (
     <StyledProduct>
-        <Link to={`/order/${id}`}><img src={image} alt="" /></Link>
+        <Link to={`/order/${id}`}><img src={image} alt={title} /></Link>
         <div className="text-wrapper">
             <div className="text-container">
                 <Link to={`/order/${id}`}>{title}<span> x {qty}</span></Link>
@@ -66,15 +68,22 @@ export default function CartProduct({cart, title, price, image, order_id, id, qt
             </div>
             <div className="button-container">
                 <CartQuantity
-                    value={value}
-                    setValue={setValue}
+                    quantity={quantity}
+                    setQuantity={setQuantity}
                     handleQty={handleQty}
                     id={id}
                     order_id={order_id}
                 />
-                <button id="remove" onClick={() => { handleRemoveFromCart(index); }}><img src={Delete} alt=""/></button>
+                <button id="remove" onClick={() => { handleCartAlert(); }}><img src={Delete} alt="Delete From Cart"/></button>
             </div>
-        </div> 
+        </div>
+        <RemoveAlert
+            RemoveAlertRef={RemoveAlertRef}
+            title={title}
+            handleRemoveFromCart={handleRemoveFromCart}
+            handleCartAlert={handleCartAlert}
+            index={index}
+        /> 
     </StyledProduct>
   )
 }
@@ -84,6 +93,7 @@ const StyledProduct = styled.div`
     margin: auto;
     padding: 10px 0;
     display: flex;
+    position: relative;
     @media(max-width: 650px){
         flex-direction: column;
         margin-bottom: 20px;

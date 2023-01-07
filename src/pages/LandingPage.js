@@ -1,5 +1,6 @@
 // styled
 import styled from "styled-components"
+import * as palette from '../styled/ThemeVariables.js';
 
 // router
 import { Link } from "react-router-dom";
@@ -10,7 +11,7 @@ import PizzaImage from '../images/pizzaLanding.jpg';
 export default function LandingPage() {
   return (
     <StyledLanding>
-        <img src={PizzaImage} alt="" />
+        <img src={PizzaImage} alt="Tasty pizzas" />
         <div className="text-wrapper">
             <div className="text-container">
                 <h2>Via Napoli</h2>
@@ -87,7 +88,7 @@ const StyledLanding = styled.section`
             }
         }
         a {
-            background: red;
+            background:${palette.ACCENTCOLOR};
             width: 200px;
             height: 40px;
             display: flex;
@@ -97,7 +98,7 @@ const StyledLanding = styled.section`
             color: white;
             border-radius: 6px;
             transition: 0.2s;
-            border: red 1px solid;
+            border:${palette.ACCENTCOLOR} 1px solid;
             &:hover {
                 background: #000000;
             }
