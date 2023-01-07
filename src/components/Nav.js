@@ -1,5 +1,6 @@
 // styled
-import styled from "styled-components"
+import styled from "styled-components";
+import * as palette from '../styled/ThemeVariables.js';
 
 // router
 import { Link } from "react-router-dom";
@@ -7,21 +8,14 @@ import { Link } from "react-router-dom";
 // components
 import CartIcon from './CartIcon.js';
 
-// redux
-import { connect } from "react-redux";
-
-const Nav = ({cart}) => {
+export const Nav = () => {
   return (
     <StyledNav>
         <Link to="/" id="logo">Via Napoli</Link>
         <div className="nav-links">
             <Link id="home-link" to="/">Home</Link>
-            <Link to="/order" style={{ marginLeft: cart.length < 1 ? 'auto': '0' }}>Order Online</Link>
-            {
-                cart.length === 0 
-                ? <></>
-                : <CartIcon /> 
-            }
+            <Link to="/order">Order Online</Link>
+            <CartIcon /> 
         </div>
     </StyledNav>
   )
@@ -37,7 +31,7 @@ const StyledNav = styled.nav`
         min-height: 5vh;
     }
     #logo {
-        color: red;
+        color:${palette.ACCENTCOLOR};
         font-size: 2em;
         font-family: 'Lobster', cursive;
         @media(max-width: 650px){
@@ -50,8 +44,8 @@ const StyledNav = styled.nav`
         align-items: center;
         max-width: 220px;
         width: 100%;
-        @media(max-width: 435px){
-            max-width: 200px;
+        @media(max-width: 650px){
+            max-width: 150px;
         }
         a {
             font-size: 1em;
@@ -64,13 +58,10 @@ const StyledNav = styled.nav`
                 font-size: 14px;
             }
         }
+        #home-link {
+            @media(max-width: 650px){
+                display: none;
+            }
+        }
     }
 `;
-
-const mapStateToProps = (state) => {
-  return {
-    cart: state.cart.cart,
-  };
-};
-
-export default connect(mapStateToProps)(Nav);

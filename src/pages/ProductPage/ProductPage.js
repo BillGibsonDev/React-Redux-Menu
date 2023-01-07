@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from "axios";
 
 // components
@@ -6,6 +6,7 @@ import Quantity from './components/Quantity.js';
 
 // styled
 import styled from "styled-components";
+import * as palette from '../../styled/ThemeVariables.js';
 
 // router
 import { useParams } from 'react-router-dom';
@@ -13,6 +14,7 @@ import { useParams } from 'react-router-dom';
 // redux
 import { addToCart } from '../../redux/actions/cart.js';
 import { useDispatch, connect } from 'react-redux';
+import { AddedAlert } from './components/AddedAlert.js';
 
 const ProductPage = ({cart}) => {
 
@@ -20,21 +22,34 @@ const ProductPage = ({cart}) => {
 
   const dispatch = useDispatch();
 
-  const [ value, setValue ] = useState(1);
+  const [ quantity, setQuantity ] = useState(1);
   const [ request, setRequest ] = useState('');
+  const [ product, setProduct ] = useState([]);
+  const [ message, setMessage ] = useState('');
 
-  const handleCart = () => {
-    let num = parseInt(value);
-    let cartCheck = cart.find((product) => product.product._id === id);
-    if(cartCheck && cartCheck.qty + value > 10){
-      alert('Sorry, items only available in quantities of 10 or less!')
+  const AlertRef = useRef();
+
+  const handleCartAlert = () => {
+    const AlertComponent = AlertRef.current;
+    if(AlertComponent.style.display === 'block'){ 
+      AlertComponent.style.display = 'none';
     } else {
-      dispatch(addToCart(product, num, request));
-      window.alert(`${product.title} added!`);
+      AlertComponent.style.display = 'block';
+      setTimeout(() => {AlertComponent.style.display = 'none'}, 1500);
     }
   }
 
-  const [ product, setProduct ] = useState([]);
+  const handleCart = () => {
+    let cartCheck = cart.find((product) => product.product._id === id);
+    if(cartCheck && cartCheck.qty + quantity > 10){
+      setMessage('Sorry, items only available in quantities of 10 or less!');
+      handleCartAlert();
+    } else {
+      setMessage(`${product.title} added!`)
+      dispatch(addToCart(product, parseInt(quantity), request));
+      handleCartAlert(); 
+    }
+  }
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -50,7 +65,7 @@ const ProductPage = ({cart}) => {
   return (
     <StyledPage>
       <div className="product-wrapper">
-        <img src={product.image} alt="" />
+        <img src={product.image} alt={product.title} />
         <div className="text-wrapper">
           <div className="text-container">
             <h2>{product.title}</h2>
@@ -58,16 +73,21 @@ const ProductPage = ({cart}) => {
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos quam sapiente exercitationem modi, perspiciatis, voluptatibus amet doloribus praesentium aliquam cupiditate temporibus assumenda! Mollitia culpa dignissimos reprehenderit dolorum officiis architecto quia!</p>
           </div>
           <Quantity
-            value={value}
-            setValue={setValue}
+            quantity={quantity}
+            setQuantity={setQuantity}
           />
           <div className="request-container">
             <h3>Special Requests</h3>
             <textarea name="request" id="request" onChange={(e)=>{setRequest(e.target.value)}} cols="30" rows="5" placeholder='Example: Please no anchovies!'></textarea>
           </div>
-          <button className="order-button" onClick={()=>{handleCart(product, value, request)}}>Order</button>
+          <button className="order-button" onClick={()=>{ handleCart(product, quantity, request)}}>Order</button>
         </div>
       </div>
+      <AddedAlert
+        AlertRef={AlertRef}
+        handleCartAlert={handleCartAlert}
+        message={message}
+      />
     </StyledPage>
   )
 }
@@ -77,6 +97,7 @@ const StyledPage = styled.div`
   display: flex;
   margin-top: 20px;
   min-height: 80vh;
+  position: relative;
   @media(max-width: 650px){
     flex-direction: column;
   }
@@ -140,7 +161,7 @@ const StyledPage = styled.div`
     }
     .order-button {
       cursor: pointer;
-      background: red;
+      background:${palette.ACCENTCOLOR};
       width: 60%;
       height: 30px;
       display: flex;
@@ -150,7 +171,7 @@ const StyledPage = styled.div`
       color: white;
       border-radius: 6px;
       transition: 0.2s;
-      border: red 1px solid;
+      border:${palette.ACCENTCOLOR} 1px solid;
       margin-top: 20px;
       &:hover {
         background: #000000;

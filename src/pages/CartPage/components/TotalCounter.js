@@ -11,15 +11,14 @@ function TotalCounter({cart}) {
   const [ total, setTotal ] = useState(0);
   const [ tax, setTax ] = useState(0);
 
+  const NEWJERSEYTAX = .07;
+
   useEffect(() => {
     const handleTotal = () => {
-      let value = 0;
-      for (let i = 0; i < cart.length; i++) {
-        value += cart[i].product.price * cart[i].qty;
-        value += value * .07;
-      }
-      setTax((value * .07).toFixed(2))
-      setTotal(value.toFixed(2));
+      let totalBeforeTax = 0;
+      totalBeforeTax = cart.reduce((sum, product) => sum + product.product.price * product.qty, 0);
+      setTax((totalBeforeTax * NEWJERSEYTAX).toFixed(2));
+      setTotal((totalBeforeTax * NEWJERSEYTAX + totalBeforeTax).toFixed(2));
     }
   handleTotal();
   }, [cart])

@@ -10,7 +10,7 @@ import CartPage from './pages/CartPage/CartPage.js';
 import ProductPage from './pages/ProductPage/ProductPage.js';
 
 // components
-import Nav from './components/Nav.js';
+import { Nav } from './components/Nav.js';
 import Footer from './components/Footer.js';
 
 // router

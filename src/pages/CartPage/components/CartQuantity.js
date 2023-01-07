@@ -1,19 +1,19 @@
 // styled
 import styled from "styled-components";
 
-export default function CartQuantity({order_id, value, setValue, handleQty}) {
+export default function CartQuantity({order_id, quantity, setQuantity, handleQty}) {
   return (
     <StyledQuantity>
         {
-            value < 2 
+            quantity < 2 
             ? <button className="inactive-btn">&#x2D;</button>
-            : <button onClick={(e) => { setValue(value - 1); handleQty(order_id, value - 1)}}>&#x2D;</button>
+            : <button onClick={(e) => { setQuantity(quantity - 1); handleQty(order_id, quantity - 1)}}>&#x2D;</button>
         }
-        <input type="number" value={value} min={1} max={10} onChange={(e) => { setValue(e.target.value); }} />
+        <input type="number" value={quantity} readOnly min={1} max={10} onChange={(e) => { setQuantity(e.target.value); }} />
         {
-            value >= 10 
+            quantity >= 10 
             ? <button className="inactive-btn">&#x2B;</button>
-            : <button onClick={(e) => { setValue(value + 1); handleQty(order_id, value + 1)}}>&#x2B;</button>
+            : <button onClick={(e) => { setQuantity(quantity + 1); handleQty(order_id, quantity + 1)}}>&#x2B;</button>
         }
     </StyledQuantity>
   )
@@ -47,6 +47,7 @@ const StyledQuantity = styled.div`
         width: 40px;
         text-align: center;
         background: none;
+        cursor: default;
     }
     input[type="number"] {
         -webkit-appearance: textfield;
