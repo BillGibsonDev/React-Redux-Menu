@@ -17,10 +17,9 @@ import Footer from './components/Footer.js';
 import { Routes, Route } from 'react-router-dom';
 
 // redux
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 import { getProducts } from './redux/actions/products.js';
 import { getCart } from './redux/actions/cart.js';
-import { connect } from "react-redux";
 
 const App = () => {
 

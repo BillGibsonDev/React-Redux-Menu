@@ -21,7 +21,9 @@ function CartIcon({cart}) {
       let cartQuantity = cart.reduce((sum, cart) => sum + cart.qty, 0);
       setQuantity(cartQuantity);
     }
-    handleCartValue();
+    if(cart){
+      handleCartValue();
+    }
   }, [cart, quantity])
   
   return (    
